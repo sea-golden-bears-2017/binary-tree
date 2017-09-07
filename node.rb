@@ -14,6 +14,7 @@ class Node
   def create_child(data)
     raise InvalidInsertionError if data == @data
     child = Node.new({data: data})
+    child.parent = self
     if data < @data
       raise InvalidInsertionError if @left
       @left = child
@@ -22,4 +23,7 @@ class Node
       @right = child
     end
   end
+
+  protected
+  attr_writer :parent
 end

@@ -19,7 +19,12 @@ describe Node do
     it 'has a parent' do
       expect(node.parent).to be_nil
     end
+
+    it 'cannot change the parent outside the class' do
+      expect { node.parent = 5 }.to raise_error(NoMethodError)
+    end
   end
+
   describe '#create_child' do
     context 'when the child data is less than the parent' do
       let!(:child) { node.create_child(3) }
@@ -27,8 +32,13 @@ describe Node do
       it 'returns a child with the passed in data' do
         expect(child.data).to eq(3)
       end
+
       it 'sets the left attribute to the new child' do
         expect(node.left).to eq(child)
+      end
+
+      it 'sets the parent of the child' do
+        expect(child.parent).to eq(node)
       end
     end
 
@@ -38,8 +48,13 @@ describe Node do
       it 'returns a child with the passed in data' do
         expect(child.data).to eq(7)
       end
+
       it 'sets the left attribute to the new child' do
         expect(node.right).to eq(child)
+      end
+
+      it 'sets the parent of the child' do
+        expect(child.parent).to eq(node)
       end
     end
 
