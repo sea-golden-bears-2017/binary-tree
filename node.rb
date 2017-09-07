@@ -35,6 +35,14 @@ class Node
     end
   end
 
+  def is_root?
+    !@parent
+  end
+
+  def is_leaf?
+    @left == nil && @right == nil
+  end
+
   protected
   attr_writer :parent, :left, :right
 end

@@ -130,4 +130,37 @@ describe Node do
       end
     end
   end
+
+  describe '#is_root?' do
+    it 'returns true if it has no parent' do
+      expect(node.is_root?).to be true
+    end
+
+    it 'returns false if it has a parent' do
+      child = node.create_child(3)
+      expect(child.is_root?).to be false
+    end
+  end
+
+  describe '#is_leaf?' do
+    it 'returns true if it has no children' do
+      expect(node.is_leaf?).to be true
+    end
+
+    it 'returns false if it has a left child' do
+      node.create_child(3)
+      expect(node.is_leaf?).to be false
+    end
+
+    it 'returns false if it has a right child' do
+      node.create_child(7)
+      expect(node.is_leaf?).to be false
+    end
+
+    it 'returns false if it has two children' do
+      node.create_child(3)
+      node.create_child(7)
+      expect(node.is_leaf?).to be false
+    end
+  end
 end
