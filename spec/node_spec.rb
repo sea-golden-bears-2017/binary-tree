@@ -2,7 +2,7 @@ require 'rspec'
 require_relative '../node'
 
 describe Node do
-  let(:node) { Node.new({data: 5}) }
+  let(:node) { Node.new(5) }
   describe 'attributes' do
     it 'has data' do
       expect(node.data).to eq(5)

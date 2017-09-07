@@ -4,8 +4,8 @@ class Node
   end
 
   attr_reader :data, :left, :right, :parent
-  def initialize(arguments)
-    @data = arguments[:data]
+  def initialize(data)
+    @data = data
     @left = nil
     @right = nil
     @parent = nil
@@ -13,7 +13,7 @@ class Node
 
   def create_child(data)
     raise InvalidInsertionError if data == @data
-    child = Node.new({data: data})
+    child = Node.new(data)
     child.parent = self
     if data < @data
       raise InvalidInsertionError if @left

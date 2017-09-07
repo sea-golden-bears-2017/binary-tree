@@ -3,7 +3,7 @@ require_relative '../binary_tree'
 require_relative '../node'
 
 describe BinaryTree do
-  let(:node) { Node.new({data: 5}) }
+  let(:node) { Node.new(5) }
   let(:tree) { BinaryTree.new(node) }
 
   it 'has a root' do
