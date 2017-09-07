@@ -14,15 +14,17 @@ describe Node do
     it 'has a parent'
   end
   describe '#create_child' do
-    it 'chooses left or right'
-    it 'creates a child with the passed in data' do
-      child = node.create_child(3)
-      expect(child.data).to eq(3)
+    context 'when the child data is less than the parent' do
+      let!(:child) { node.create_child(3) }
+
+      it 'returns a child with the passed in data' do
+        expect(child.data).to eq(3)
+      end
+      it 'sets the left attribute to the new child' do
+        expect(node.left).to eq(child)
+      end
     end
-    it 'sets the left attribute to the new child' do
-      child = node.create_child(3)
-      expect(node.left).to eq(child)
-    end
+
     context 'raises an exception when' do
       it 'the right child exists and child data is greater than the parent data'
       it 'the left child exists and child data is less than the parent data'
