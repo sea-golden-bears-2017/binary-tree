@@ -3,11 +3,12 @@ class Node
   class InvalidInsertionError < StandardError
   end
 
-  attr_reader :data, :left, :right
+  attr_reader :data, :left, :right, :parent
   def initialize(arguments)
     @data = arguments[:data]
     @left = nil
     @right = nil
+    @parent = nil
   end
 
   def create_child(data)

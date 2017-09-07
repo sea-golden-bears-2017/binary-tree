@@ -7,11 +7,18 @@ describe Node do
     it 'has data' do
       expect(node.data).to eq(5)
     end
-    xit 'has a left child' do
-      expect(node.left).to_not be_nil
+
+    it 'has a left child' do
+      expect(node.left).to be_nil
     end
-    it 'has a right child'
-    it 'has a parent'
+
+    it 'has a right child' do
+      expect(node.left).to be_nil
+    end
+
+    it 'has a parent' do
+      expect(node.parent).to be_nil
+    end
   end
   describe '#create_child' do
     context 'when the child data is less than the parent' do
