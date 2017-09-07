@@ -80,4 +80,54 @@ describe Node do
       end
     end
   end
+
+  describe '#detach' do
+    let!(:left_child) { node.create_child(3) }
+    let!(:right_child) { node.create_child(7) }
+
+    it 'keeps the parent as nil if already detached' do
+      node.detach
+      expect(node.parent).to be_nil
+    end
+
+    context 'left child' do
+      before(:each) { left_child.detach }
+
+      it 'sets the parent to nil' do
+        expect(left_child.parent).to be_nil
+      end
+
+      it 'sets the parent to nil when detaching' do
+        expect(left_child.parent).to be_nil
+      end
+
+      it 'sets the left attribute of the parent to be nil' do
+        expect(node.left).to be_nil
+      end
+
+      it 'leaves the right child alone' do
+        expect(node.right).to be(right_child)
+      end
+    end
+
+    context 'right child' do
+      before(:each) { right_child.detach }
+
+      it 'sets the parent to nil' do
+        expect(right_child.parent).to be_nil
+      end
+
+      it 'sets the parent to nil when detaching' do
+        expect(right_child.parent).to be_nil
+      end
+
+      it 'sets the right attribute of the parent to be nil' do
+        expect(node.right).to be_nil
+      end
+
+      it 'leaves the left child alone' do
+        expect(node.left).to be(left_child)
+      end
+    end
+  end
 end

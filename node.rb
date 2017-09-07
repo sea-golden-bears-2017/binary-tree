@@ -24,6 +24,17 @@ class Node
     end
   end
 
+  def detach
+    if parent
+      if parent.left == self
+        parent.left = nil
+      else
+        parent.right = nil
+      end
+      @parent = nil
+    end
+  end
+
   protected
-  attr_writer :parent
+  attr_writer :parent, :left, :right
 end
