@@ -40,6 +40,9 @@ describe Node do
       it 'the right child exists and child data is greater than the parent data'
       it 'the left child exists and child data is less than the parent data'
       it 'there are already two children'
+      it 'the data is the same value as the parent' do
+        expect { node.create_child(5) }.to raise_error(Node::InvalidInsertionError)
+      end
     end
   end
 end
