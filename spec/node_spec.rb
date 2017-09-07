@@ -25,6 +25,17 @@ describe Node do
       end
     end
 
+    context 'when the child data is greater than the parent' do
+      let!(:child) { node.create_child(7) }
+
+      it 'returns a child with the passed in data' do
+        expect(child.data).to eq(7)
+      end
+      it 'sets the left attribute to the new child' do
+        expect(node.right).to eq(child)
+      end
+    end
+
     context 'raises an exception when' do
       it 'the right child exists and child data is greater than the parent data'
       it 'the left child exists and child data is less than the parent data'
