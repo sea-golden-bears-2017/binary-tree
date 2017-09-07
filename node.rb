@@ -14,8 +14,10 @@ class Node
     raise InvalidInsertionError if data == @data
     child = Node.new({data: data})
     if data < @data
+      raise InvalidInsertionError if @left
       @left = child
     else
+      raise InvalidInsertionError if @right
       @right = child
     end
   end

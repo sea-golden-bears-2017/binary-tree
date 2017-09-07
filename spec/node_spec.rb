@@ -37,9 +37,22 @@ describe Node do
     end
 
     context 'raises an exception when' do
-      it 'the right child exists and child data is greater than the parent data'
-      it 'the left child exists and child data is less than the parent data'
-      it 'there are already two children'
+      it 'the right child exists and child data is greater than the parent data' do
+        node.create_child(7)
+        expect { node.create_child(6) }.to raise_error(Node::InvalidInsertionError)
+      end
+
+      it 'the left child exists and child data is less than the parent data' do
+        node.create_child(3)
+        expect { node.create_child(4) }.to raise_error(Node::InvalidInsertionError)
+
+      end
+
+      it 'there are already two children' do
+        node.create_child(3)
+        node.create_child(7)
+        expect { node.create_child(3) }.to raise_error(Node::InvalidInsertionError)
+      end
       it 'the data is the same value as the parent' do
         expect { node.create_child(5) }.to raise_error(Node::InvalidInsertionError)
       end
